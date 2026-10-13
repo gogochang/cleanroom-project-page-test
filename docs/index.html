@@ -52,11 +52,25 @@
 
         .top-nav {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
             gap: 24px;
             width: 100%;
             padding: 12px 24px;
+        }
+
+        .lab-brand {
+            display: inline-flex;
+            align-items: center;
+            flex-shrink: 0;
+            min-height: 44px;
+            border-radius: 4px;
+        }
+
+        .lab-brand img {
+            display: block;
+            width: 112px;
+            height: auto;
         }
 
         .top-nav-controls {
@@ -173,8 +187,13 @@
         }
 
         .abstract {
-            max-width: 860px;
+            max-width: 940px;
             margin: 0 auto;
+            padding: 56px 40px;
+            background: #f7f9fc;
+            /* Extend the flat section background to both viewport edges without widening the text or page. */
+            box-shadow: 0 0 0 100vmax #f7f9fc;
+            clip-path: inset(0 -100vmax);
         }
 
         .content-language-label {
@@ -620,6 +639,10 @@
                 padding: 48px 20px;
             }
 
+            .abstract {
+                padding: 40px 20px;
+            }
+
             .publication-title {
                 font-size: 32px;
                 line-height: 1.2;
@@ -650,13 +673,153 @@
             .content-language-label {
                 display: none;
             }
+
+            .lab-brand img {
+                width: 96px;
+            }
         }
+
+        /* Case gallery: short landscape clips from the same benchmark environment. */
+        .case-showcase { padding-bottom: 48px; margin-bottom: 48px; }
+        .case-showcase > h2 { text-align: center; }
+        .section-kicker { margin: 0 0 10px; color: var(--color-accent); font-size: 12px; font-weight: 600; letter-spacing: .14em; text-align: center; }
+        .gallery-layout { display: grid; grid-template-columns: 48px minmax(0, 1fr) 48px; align-items: center; gap: 16px; }
+        .gallery-hint { margin: 0 0 16px; color: var(--color-muted); font-size: 14px; }
+        .gallery-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            margin-bottom: 18px;
+            padding: 0;
+            appearance: none;
+            border: 1px solid #d5e0f1;
+            border-radius: 50%;
+            background: #ffffff;
+            color: var(--color-accent);
+            box-shadow: 0 2px 4px rgb(29 57 103 / 4%), 0 5px 14px rgb(29 57 103 / 8%);
+            cursor: pointer;
+            touch-action: manipulation;
+            transition: background-color 180ms ease, border-color 180ms ease,
+                        color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+        }
+
+        .gallery-button svg {
+            display: block;
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+            transition: transform 180ms ease;
+        }
+
+        @media (hover: hover) {
+            .gallery-button:hover:not(:disabled) {
+                border-color: var(--color-accent);
+                background: var(--color-accent);
+                color: #ffffff;
+                box-shadow: 0 4px 14px rgb(53 109 204 / 24%);
+            }
+
+            .gallery-button[data-direction="-1"]:hover:not(:disabled) svg { transform: translateX(-2px); }
+            .gallery-button[data-direction="1"]:hover:not(:disabled) svg { transform: translateX(2px); }
+        }
+
+        .gallery-button:active:not(:disabled) {
+            transform: scale(.94);
+            border-color: var(--color-accent-hover);
+            background: var(--color-accent-hover);
+            color: #ffffff;
+            box-shadow: 0 1px 3px rgb(29 57 103 / 12%);
+        }
+
+        .gallery-button:disabled {
+            border-color: #e7ecf4;
+            background: #f7f9fc;
+            color: #b5c1d2;
+            box-shadow: none;
+            cursor: default;
+        }
+
+        .gallery-button:focus-visible {
+            outline: 3px solid var(--color-accent);
+            outline-offset: 4px;
+        }
+
+        .case-track:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .gallery-button, .gallery-button svg { transition: none; }
+            .gallery-button:active:not(:disabled),
+            .gallery-button[data-direction]:hover:not(:disabled) svg { transform: none; }
+        }
+        .case-track { display: grid; grid-auto-flow: column; grid-auto-columns: 76%; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-color: var(--color-accent) var(--color-surface); scrollbar-width: thin; padding: 0 0 18px; }
+        .case-card { min-width: 0; overflow: hidden; border: 1px solid var(--color-border); border-radius: 12px; scroll-snap-align: start; background: white; }
+        .case-media { position: relative; background: var(--color-surface); }
+        .case-media video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; }
+        .sample-badge { position: absolute; top: 10px; left: 10px; padding: 3px 9px; border-radius: 5px; background: rgb(255 255 255 / 94%); color: var(--color-muted); font-size: 11px; font-weight: 600; pointer-events: none; }
+        .case-copy { padding: 20px; }
+        .case-meta { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; color: var(--color-accent); font-size: 12px; font-weight: 600; letter-spacing: .04em; }
+        .case-copy h3 { margin: 0 0 8px; color: var(--color-heading); font-size: 19px; line-height: 1.4; }
+        .case-copy p { margin: 0; color: var(--color-muted); font-size: 14px; line-height: 1.7; }
+        .layout-note { margin: 16px 0 0; font-size: 13px; color: var(--color-muted); }
+        .evaluation-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+        .metric-panel { min-width: 0; margin: 0; padding: 24px; border: 1px solid var(--color-border); border-radius: 12px; }
+        .metric-panel h3 { margin: 0 0 6px; color: var(--color-heading); font-size: 19px; }
+        .metric-description { min-height: 48px; margin: 0 0 24px; color: var(--color-muted); font-size: 14px; line-height: 1.7; }
+        .metric-scale { display: flex; justify-content: space-between; margin: 0 46px 12px 38px; font-size: 11px; color: var(--color-muted); }
+        .metric-bars { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+        .metric-bars li { display: grid; grid-template-columns: 28px minmax(0, 1fr) 38px; gap: 10px; align-items: center; font-size: 13px; font-variant-numeric: tabular-nums; }
+        .metric-bar-track { height: 22px; background: var(--color-surface); border-radius: 3px; overflow: hidden; }
+        .metric-bar { width: var(--bar-width); height: 100%; background: var(--color-accent); border-radius: 3px; }
+        .metric-bars li:nth-child(even) .metric-bar { background: #8eaddf; }
+        .metric-value { text-align: right; }
+        .metric-panel figcaption { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--color-border); color: var(--color-muted); font-size: 13px; }
+        @media (max-width: 700px) {
+            .gallery-layout { grid-template-columns: 22px minmax(0, 1fr) 22px; gap: 0; }
+            .gallery-button { width: 44px; height: 44px; grid-row: 1; justify-self: center; z-index: 1; }
+            .gallery-button[data-direction="-1"] { grid-column: 1; }
+            .gallery-button[data-direction="1"] { grid-column: 3; }
+            .case-track { grid-column: 1 / -1; grid-row: 1; min-width: 0; grid-auto-columns: 100%; gap: 14px; }
+            .evaluation-metrics { grid-template-columns: 1fr; }
+            .metric-panel { padding: 20px; }
+            .gallery-hint { max-width: 220px; font-size: 12px; }
+        }
+
+
+        .abstract + .content-section { border-top: 0; }
+        .system-overview-figure { margin: 28px 0 0; }
+        .system-diagram-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            aspect-ratio: 16 / 7;
+            min-height: 200px;
+            padding: 24px;
+            border: 1px dashed #c4d3ea;
+            border-radius: 12px;
+            background: #f8faff;
+            color: var(--color-muted);
+            text-align: center;
+        }
+        .system-diagram-placeholder strong { color: var(--color-accent); font-size: 17px; font-weight: 600; }
+        .system-diagram-placeholder span { font-size: 13px; }
+        .system-diagram-image { display: block; width: 100%; height: auto; border-radius: 12px; }
+        .system-overview-figure figcaption { margin-top: 14px; color: var(--color-muted); font-size: 14px; text-align: center; }
     </style>
 </head>
 
 <body>
     <header class="site-header">
         <nav class="top-nav" aria-label="Main menu / 상단 메뉴">
+            <a class="lab-brand" href="https://sites.google.com/view/icir-lab/%ED%99%88"
+               target="_blank" rel="noopener noreferrer"
+               aria-label="iCIR Lab 홈페이지 (새 탭에서 열림) / iCIR Lab website (opens in a new tab)">
+                <img src="assets/icir-lab-logo.png" alt="iCIR Lab" width="570" height="283">
+            </a>
             <div class="top-nav-controls">
                 <span class="content-language-label" aria-hidden="true">Content language · 본문 언어</span>
                 <button class="language-switch" id="language-toggle" type="button" data-language="en"
@@ -713,6 +876,34 @@
             <span class="sr-only" id="language-status" role="status" aria-live="polite"></span>
             <!-- Add future sections to both language containers below. -->
             <div class="localized-content" id="content-en" lang="en">
+                <section class="case-showcase" aria-labelledby="cases-title-en">
+        <p class="section-kicker">SAME ENVIRONMENT · DIFFERENT CASES</p>
+        <h2 class="section-title" id="cases-title-en">Special-case videos</h2>
+        <p class="overview-intro">One cleanroom environment, different search conditions. Explore each case in a short clip of up to one minute.</p>
+        <p class="gallery-hint">Scroll to explore · 4 cases · up to 1 min each</p>
+        <div class="gallery-layout">
+            <button class="gallery-button" type="button" data-direction="-1" aria-label="Previous case" aria-controls="cases-track-en" title="Previous case">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m14 6-6 6 6 6"/></svg>
+            </button>
+            <div class="case-track" id="cases-track-en" tabindex="0" role="region" aria-label="Special-case videos"><article class="case-card">
+            <div class="case-media"><video controls playsinline preload="none" poster="media/cases/sample-01.jpg" aria-label="SAMPLE CLIP 01"><source src="media/cases/sample-01.mp4" type="video/mp4"><a href="media/cases/sample-01.mp4">MP4</a></video><span class="sample-badge">SAMPLE CLIP</span></div>
+            <div class="case-copy"><div class="case-meta"><span>CASE 01</span><span>00:20</span></div><h3>Source near an obstacle</h3><p>Observe the search path and final approach around nearby equipment.</p></div>
+        </article><article class="case-card">
+            <div class="case-media"><video controls playsinline preload="none" poster="media/cases/sample-02.jpg" aria-label="SAMPLE CLIP 02"><source src="media/cases/sample-02.mp4" type="video/mp4"><a href="media/cases/sample-02.mp4">MP4</a></video><span class="sample-badge">SAMPLE CLIP</span></div>
+            <div class="case-copy"><div class="case-meta"><span>CASE 02</span><span>00:20</span></div><h3>Weak concentration signal</h3><p>Follow the transition from sparse measurements to a focused search.</p></div>
+        </article><article class="case-card">
+            <div class="case-media"><video controls playsinline preload="none" poster="media/cases/sample-03.jpg" aria-label="SAMPLE CLIP 03"><source src="media/cases/sample-03.mp4" type="video/mp4"><a href="media/cases/sample-03.mp4">MP4</a></video><span class="sample-badge">SAMPLE CLIP</span></div>
+            <div class="case-copy"><div class="case-meta"><span>CASE 03</span><span>00:20</span></div><h3>Broad gas distribution</h3><p>See how the estimated source is refined across a wider concentration field.</p></div>
+        </article><article class="case-card">
+            <div class="case-media"><video controls playsinline preload="none" poster="media/cases/sample-04.jpg" aria-label="SAMPLE CLIP 04"><source src="media/cases/sample-04.mp4" type="video/mp4"><a href="media/cases/sample-04.mp4">MP4</a></video><span class="sample-badge">SAMPLE CLIP</span></div>
+            <div class="case-copy"><div class="case-meta"><span>CASE 04</span><span>00:20</span></div><h3>Source far from the patrol route</h3><p>Track the approach from the initial detection point to a distant source.</p></div>
+        </article></div>
+            <button class="gallery-button" type="button" data-direction="1" aria-label="Next case" aria-controls="cases-track-en" title="Next case">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m10 6 6 6-6 6"/></svg>
+            </button>
+        </div>
+        <p class="layout-note">Layout preview: all four 20-second clips are excerpts from the main demo. Case titles describe planned videos, not the content of these sample clips.</p>
+    </section>
                 <section class="abstract" aria-labelledby="abstract-title-en">
                     <h2 class="section-title" id="abstract-title-en">Abstract</h2>
                     <div class="abstract-copy">
@@ -738,7 +929,7 @@
                         </p>
                         <p>
                             This paper proposes a benchmark for a single gas source that evaluates the process
-                            from anomaly detection during a robot's patrol to arrival at the source in the
+                            from anomaly detection during a robot's patrol to the final source-position decision in the
                             absence of wind-direction cues. In regions away from obstacles, gas concentration
                             on the horizontal plane at sensor height is modeled as an isotropic Gaussian,
                             since there is no horizontal airflow to skew the distribution. The robot measures
@@ -746,10 +937,11 @@
                             Upon detecting an anomalous concentration, it switches to a high-resolution
                             search (HRS), using a Gaussian Markov random field (GMRF) to estimate the
                             concentration field and locate the source. Evaluation measures the time from
-                            the transition to HRS until arrival at the estimated source location, together
-                            with the source localization error. Rather than fixing a success threshold,
-                            the benchmark also reports the error distribution, allowing results to be
-                            interpreted according to the required localization accuracy.
+                            the transition to HRS until the final source-position decision, together with
+                            the source localization error. A trial succeeds when its error is at most 0.5 m.
+                            The final Score averages success-weighted time efficiency across all trials,
+                            using shortest-path travel time at a maximum speed of 0.18 m/s as the reference.
+                            Failed trials contribute zero.
                         </p>
                         <p>
                             We randomly generated gas source positions, strengths, and distribution widths
@@ -767,8 +959,51 @@
                         </p>
                     </div>
                 </section>
+                <section class="content-section system-overview" aria-labelledby="system-overview-title-en">
+                    <h2 class="section-title" id="system-overview-title-en">System overview</h2>
+                    <figure class="system-overview-figure">
+                        <!-- Replace this placeholder with an img using class="system-diagram-image" when the diagram is ready. -->
+                        <div class="system-diagram-placeholder">
+                            <strong>Overall system diagram</strong>
+                            <span>Coming soon</span>
+                        </div>
+                        <figcaption>Routine patrol → Anomaly detection → High-resolution search (HRS) → Gas source localization</figcaption>
+                    </figure>
+                </section>
+                <section class="content-section evaluation-preview" aria-labelledby="evaluation-title-en">
+        <p class="section-kicker">BENCHMARK RESULTS</p><h2 class="section-title" id="evaluation-title-en">Evaluation results</h2><p class="overview-intro">Evaluating localization accuracy and time efficiency after the transition to HRS.</p>
+        <p class="results-status"><strong>Sample data</strong> · These plots preview the layout and do not represent experimental results.</p><div class="evaluation-metrics"><figure class="metric-panel"><h3>Search decision time</h3><p class="metric-description">Elapsed simulation time from the transition to HRS to the final source-position decision.</p><div class="metric-scale" aria-hidden="true"><span>0</span><span>50</span><span>100</span><span>150 s</span></div><ol class="metric-bars" aria-label="Search decision time"><li><span>M1</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 56.00%"></div></div><span class="metric-value">84</span></li><li><span>M2</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 74.67%"></div></div><span class="metric-value">112</span></li><li><span>M3</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 45.33%"></div></div><span class="metric-value">68</span></li><li><span>M4</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 64.00%"></div></div><span class="metric-value">96</span></li><li><span>M5</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 50.67%"></div></div><span class="metric-value">76</span></li><li><span>M6</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 69.33%"></div></div><span class="metric-value">104</span></li></ol><figcaption>Example median · seconds (s) · lower is better</figcaption></figure><figure class="metric-panel"><h3>Source localization error</h3><p class="metric-description">Distance between the estimated position and the actual gas source.</p><div class="metric-scale" aria-hidden="true"><span>0</span><span>0.2</span><span>0.4</span><span>0.6</span><span>0.8 m</span></div><ol class="metric-bars" aria-label="Source localization error"><li><span>M1</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 52.50%"></div></div><span class="metric-value">0.42</span></li><li><span>M2</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 72.50%"></div></div><span class="metric-value">0.58</span></li><li><span>M3</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 38.75%"></div></div><span class="metric-value">0.31</span></li><li><span>M4</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 61.25%"></div></div><span class="metric-value">0.49</span></li><li><span>M5</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 45.00%"></div></div><span class="metric-value">0.36</span></li><li><span>M6</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 66.25%"></div></div><span class="metric-value">0.53</span></li></ol><figcaption>Example median · meters (m) · lower is better</figcaption></figure></div>
+    </section>
             </div>
             <div class="localized-content" id="content-ko" lang="ko" hidden>
+                <section class="case-showcase" aria-labelledby="cases-title-ko">
+        <p class="section-kicker">SAME ENVIRONMENT · DIFFERENT CASES</p>
+        <h2 class="section-title" id="cases-title-ko">특수 케이스별 영상</h2>
+        <p class="overview-intro">동일한 클린룸 환경에서, 서로 다른 탐색 조건을 살펴봅니다. 각 케이스의 동작을 최대 1분의 짧은 영상으로 확인하세요.</p>
+        <p class="gallery-hint">가로로 넘겨 보기 · 4개 케이스 · 각 최대 1분</p>
+        <div class="gallery-layout">
+            <button class="gallery-button" type="button" data-direction="-1" aria-label="이전 케이스" aria-controls="cases-track-ko" title="이전 케이스">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m14 6-6 6 6 6"/></svg>
+            </button>
+            <div class="case-track" id="cases-track-ko" tabindex="0" role="region" aria-label="특수 케이스별 영상"><article class="case-card">
+            <div class="case-media"><video controls playsinline preload="none" poster="media/cases/sample-01.jpg" aria-label="샘플 영상 01"><source src="media/cases/sample-01.mp4" type="video/mp4"><a href="media/cases/sample-01.mp4">MP4</a></video><span class="sample-badge">샘플 영상</span></div>
+            <div class="case-copy"><div class="case-meta"><span>CASE 01</span><span>00:20</span></div><h3>장애물 주변의 가스원</h3><p>설비 가까이에 위치한 가스원을 향한 탐색 경로와 최종 접근 과정을 보여줍니다.</p></div>
+        </article><article class="case-card">
+            <div class="case-media"><video controls playsinline preload="none" poster="media/cases/sample-02.jpg" aria-label="샘플 영상 02"><source src="media/cases/sample-02.mp4" type="video/mp4"><a href="media/cases/sample-02.mp4">MP4</a></video><span class="sample-badge">샘플 영상</span></div>
+            <div class="case-copy"><div class="case-meta"><span>CASE 02</span><span>00:20</span></div><h3>약한 농도 신호</h3><p>제한적인 농도 측정에서 집중 탐색으로 전환하는 과정을 보여줍니다.</p></div>
+        </article><article class="case-card">
+            <div class="case-media"><video controls playsinline preload="none" poster="media/cases/sample-03.jpg" aria-label="샘플 영상 03"><source src="media/cases/sample-03.mp4" type="video/mp4"><a href="media/cases/sample-03.mp4">MP4</a></video><span class="sample-badge">샘플 영상</span></div>
+            <div class="case-copy"><div class="case-meta"><span>CASE 03</span><span>00:20</span></div><h3>넓게 퍼진 가스 분포</h3><p>넓은 농도 분포 안에서 가스원 추정 위치를 좁혀 가는 과정을 보여줍니다.</p></div>
+        </article><article class="case-card">
+            <div class="case-media"><video controls playsinline preload="none" poster="media/cases/sample-04.jpg" aria-label="샘플 영상 04"><source src="media/cases/sample-04.mp4" type="video/mp4"><a href="media/cases/sample-04.mp4">MP4</a></video><span class="sample-badge">샘플 영상</span></div>
+            <div class="case-copy"><div class="case-meta"><span>CASE 04</span><span>00:20</span></div><h3>순찰 경로에서 먼 가스원</h3><p>초기 검출 지점부터 멀리 떨어진 가스원까지의 접근 과정을 보여줍니다.</p></div>
+        </article></div>
+            <button class="gallery-button" type="button" data-direction="1" aria-label="다음 케이스" aria-controls="cases-track-ko" title="다음 케이스">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m10 6 6 6-6 6"/></svg>
+            </button>
+        </div>
+        <p class="layout-note">레이아웃 미리보기: 20초 영상 4개는 모두 메인 데모의 발췌본입니다. 케이스 제목은 향후 영상 구성 예시이며, 현재 샘플 영상의 내용을 뜻하지 않습니다.</p>
+    </section>
                 <section class="abstract" aria-labelledby="abstract-title-ko">
                     <h2 class="section-title" id="abstract-title-ko">초록</h2>
                     <div class="abstract-copy">
@@ -786,14 +1021,17 @@
                             평시 순찰로 얻은 제한적인 농도 정보를 활용해 가스원에 얼마나 빨리 도달하는가는 충분히 다뤄지지 않았다.
                         </p>
                         <p>
-                            본 논문은 단일 가스원을 대상으로, 풍향 단서가 없는 환경에서 순찰 중 이상을 감지한 로봇이 가스원에 도달하기까지의
+                            본 논문은 단일 가스원을 대상으로, 풍향 단서가 없는 환경에서 순찰 중 이상을 감지한 로봇이 최종 가스원 추정 위치를 결정하기까지의
                             과정을 평가하는 벤치마크를 제안한다.
                             장애물에서 떨어진 영역에서는 분포를 한쪽으로 치우치게 할 수평 기류가 없으므로,
                             센서 높이 수평 단면의 가스 농도를 등방성 가우시안으로 모델링한다.
                             로봇은 저해상도 순찰(LRS)로 사전에 정의된 지점의 농도를 측정하고,
                             이상 농도가 검출되면 고해상도 탐색(HRS)으로 전환하여 가우시안 마르코프 랜덤 필드(GMRF)로 농도를 추정하여 가스원을 찾는다.
-                            평가는 탐색 전환부터 추정 위치 도착까지의 시간과 추정 위치 오차로 하며,
-                            성공 기준을 고정하지 않고 오차 분포를 함께 제시하여 요구 정확도에 따라 결과를 해석할 수 있게 한다.
+                            평가는 탐색 전환부터 최종 가스원 추정 위치 결정까지의 시간과 위치 추정 오차로 하며,
+                            오차가 0.5 m 이하인 trial을 성공으로 판정한다.
+                            최단경로를 최대속도 0.18 m/s로 이동하는 시간을 기준으로 시간 효율을 계산하고,
+                            각 trial의 성공 여부와 시간 효율을 곱해 전체 trial에 대해 평균한 값을 최종 Score로 사용한다.
+                            실패한 trial은 0점으로 반영한다.
                         </p>
                         <p>
                             ROS 2, Gazebo, Nav2 기반 시뮬레이션의 장애물 실내 환경에서 가스원의 위치, 세기, 분포 폭을 무작위로 생성하였다.
@@ -805,10 +1043,47 @@
                         </p>
                     </div>
                 </section>
+                <section class="content-section system-overview" aria-labelledby="system-overview-title-ko">
+                    <h2 class="section-title" id="system-overview-title-ko">전체 시스템 구성</h2>
+                    <figure class="system-overview-figure">
+                        <!-- Replace this placeholder with an img using class="system-diagram-image" when the diagram is ready. -->
+                        <div class="system-diagram-placeholder">
+                            <strong>전체 시스템 도표</strong>
+                            <span>추가 예정</span>
+                        </div>
+                        <figcaption>평시 순찰 → 이상 감지 → 고해상도 탐색(HRS) → 가스 소스 위치 추정</figcaption>
+                    </figure>
+                </section>
+                <section class="content-section evaluation-preview" aria-labelledby="evaluation-title-ko">
+        <p class="section-kicker">BENCHMARK RESULTS</p><h2 class="section-title" id="evaluation-title-ko">평가 결과</h2><p class="overview-intro">HRS 전환 이후의 위치 추정 정확도와 시간 효율을 함께 평가합니다.</p>
+        <p class="results-status"><strong>예시 데이터</strong> · 아래 그래프는 레이아웃 확인용이며 실제 실험 결과가 아닙니다.</p><div class="evaluation-metrics"><figure class="metric-panel"><h3>가스원 위치 결정 시간</h3><p class="metric-description">고해상도 탐색(HRS) 전환부터 최종 가스원 추정 위치 결정까지의 시뮬레이션 시간입니다.</p><div class="metric-scale" aria-hidden="true"><span>0</span><span>50</span><span>100</span><span>150 s</span></div><ol class="metric-bars" aria-label="가스원 위치 결정 시간"><li><span>M1</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 56.00%"></div></div><span class="metric-value">84</span></li><li><span>M2</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 74.67%"></div></div><span class="metric-value">112</span></li><li><span>M3</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 45.33%"></div></div><span class="metric-value">68</span></li><li><span>M4</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 64.00%"></div></div><span class="metric-value">96</span></li><li><span>M5</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 50.67%"></div></div><span class="metric-value">76</span></li><li><span>M6</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 69.33%"></div></div><span class="metric-value">104</span></li></ol><figcaption>중앙값 예시 · 초(s) · 낮을수록 좋음</figcaption></figure><figure class="metric-panel"><h3>가스원 위치 추정 오차</h3><p class="metric-description">추정한 위치와 실제 가스원 사이의 거리입니다.</p><div class="metric-scale" aria-hidden="true"><span>0</span><span>0.2</span><span>0.4</span><span>0.6</span><span>0.8 m</span></div><ol class="metric-bars" aria-label="가스원 위치 추정 오차"><li><span>M1</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 52.50%"></div></div><span class="metric-value">0.42</span></li><li><span>M2</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 72.50%"></div></div><span class="metric-value">0.58</span></li><li><span>M3</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 38.75%"></div></div><span class="metric-value">0.31</span></li><li><span>M4</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 61.25%"></div></div><span class="metric-value">0.49</span></li><li><span>M5</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 45.00%"></div></div><span class="metric-value">0.36</span></li><li><span>M6</span><div class="metric-bar-track" aria-hidden="true"><div class="metric-bar" style="--bar-width: 66.25%"></div></div><span class="metric-value">0.53</span></li></ol><figcaption>중앙값 예시 · 미터(m) · 낮을수록 좋음</figcaption></figure></div>
+    </section>
             </div>
         </div>
     </main>
     <script>
+
+        const galleries = [...document.querySelectorAll('.case-showcase')].map(section => {
+            const track = section.querySelector('.case-track');
+            const buttons = [...section.querySelectorAll('.gallery-button')];
+            function update() {
+                buttons[0].disabled = track.scrollLeft <= 2;
+                buttons[1].disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+            }
+            buttons.forEach(button => button.addEventListener('click', () => {
+                const step = track.querySelector('.case-card').getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap);
+                track.scrollBy({ left: Number(button.dataset.direction) * step,
+                    behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+            }));
+            track.addEventListener('scroll', update, { passive: true });
+            new ResizeObserver(update).observe(track);
+            return { update };
+        });
+        // Avoid overlapping audio/playback across the main demo and sample cards.
+        document.querySelectorAll('video').forEach(video => video.addEventListener('play', () => {
+            document.querySelectorAll('video').forEach(other => { if (other !== video) other.pause(); });
+        }));
+
         const contentRoot = document.getElementById('project-content');
         const languageToggle = document.getElementById('language-toggle');
         const languagePanels = contentRoot.querySelectorAll('.localized-content');
@@ -827,7 +1102,9 @@
             languageToggle.title = language === 'ko' ? 'Switch to English' : '한국어로 전환';
             languagePanels.forEach(panel => {
                 panel.hidden = panel.lang !== language;
+                if (panel.hidden) panel.querySelectorAll('video').forEach(video => video.pause());
             });
+            galleries.forEach(gallery => gallery.update());
             if (announce) {
                 languageStatus.lang = language;
                 languageStatus.textContent = language === 'ko'
