@@ -129,11 +129,14 @@
             margin: 4px 0;
         }
 
+        .publication-authors a,
         .publication-affiliations a {
             color: var(--color-accent);
             text-decoration: none;
         }
 
+        .publication-authors a:hover,
+        .publication-authors a:focus-visible,
         .publication-affiliations a:hover {
             color: var(--color-accent-hover);
             text-decoration: underline;
@@ -839,7 +842,9 @@
 
             <div lang="en">
                 <ul class="publication-authors" aria-label="Project creator">
-                    <li>Changgyu Kim</li>
+                    <li><a href="https://github.com/gogochang"
+                           target="_blank" rel="noopener noreferrer"
+                           aria-label="Changgyu Kim on GitHub (opens in a new tab)">Changgyu Kim</a></li>
                 </ul>
                 <div class="publication-affiliations" aria-label="Affiliation">
                     <p><a href="https://sites.google.com/view/icir-lab/%ED%99%88"
