@@ -76,6 +76,8 @@
             flex-shrink: 0;
             min-height: 44px;
             border-radius: 4px;
+            grid-column: 1;
+            grid-row: 1;
         }
 
         .lab-brand img {
@@ -90,6 +92,8 @@
             align-items: center;
             flex-shrink: 0;
             gap: 16px;
+            grid-column: 3;
+            grid-row: 1;
         }
 
         .section-nav {
@@ -97,6 +101,77 @@
             overflow-x: auto;
             scrollbar-width: thin;
             scrollbar-color: var(--color-border) transparent;
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        .menu-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            grid-column: 2;
+            grid-row: 1;
+            justify-self: center;
+            width: 44px;
+            height: 44px;
+            padding: 10px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background: var(--color-background);
+            color: var(--color-accent);
+            cursor: pointer;
+        }
+
+        .menu-toggle:hover { background: var(--color-surface); }
+        .menu-toggle:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+        .menu-toggle[hidden], #section-navigation[hidden] { display: none; }
+        .menu-toggle svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; }
+        .menu-close-icon { display: none; }
+        .menu-toggle[aria-expanded="true"] .menu-open-icon { display: none; }
+        .menu-toggle[aria-expanded="true"] .menu-close-icon { display: block; }
+
+        .site-header[data-menu-ready] #section-navigation { overflow-x: hidden; }
+        .site-header[data-menu-compact="true"] .top-nav {
+            grid-template-columns: minmax(0, 1fr) auto auto;
+        }
+        .site-header[data-menu-compact="true"] .menu-toggle {
+            justify-self: end;
+        }
+        .site-header[data-menu-compact="true"] #section-navigation {
+            position: absolute;
+            top: 100%;
+            left: 12px;
+            right: 12px;
+            max-height: calc(100vh - var(--header-offset, 110px) - 16px);
+            max-height: calc(100dvh - var(--header-offset, 110px) - 16px);
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            background: var(--color-background);
+            box-shadow: 0 12px 32px rgb(29 57 103 / 12%);
+        }
+
+        .site-header[data-menu-compact="true"] #section-navigation ul {
+            flex-direction: column;
+            width: 100%;
+            min-width: 0;
+            padding: 8px;
+        }
+
+        .site-header[data-menu-compact="true"] #section-navigation a {
+            white-space: normal;
+            overflow-wrap: anywhere;
+        }
+
+        /* An inert, clipped copy measures the full row even while the menu is closed. */
+        .section-nav-measure {
+            position: absolute;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            visibility: hidden;
+            pointer-events: none;
         }
 
         .section-nav ul {
@@ -131,7 +206,6 @@
 
         @media (max-width: 1200px) {
             .top-nav { --header-side-width: 134px; }
-            .content-language-label { display: none; }
         }
 
         main {
@@ -252,11 +326,6 @@
             /* Extend the flat section background to both viewport edges without widening the text or page. */
             box-shadow: 0 0 0 100vmax #f7f9fc;
             clip-path: inset(0 -100vmax);
-        }
-
-        .content-language-label {
-            color: var(--color-muted);
-            font-size: 13px;
         }
 
         .abstract > h2 {
@@ -922,10 +991,6 @@
                 padding: 6px 8px;
             }
 
-            .content-language-label {
-                display: none;
-            }
-
             .lab-brand img {
                 width: 72px;
             }
@@ -1094,7 +1159,12 @@
                aria-label="iCIR Lab 홈페이지 (새 탭에서 열림) / iCIR Lab website (opens in a new tab)">
                 <img src="assets/icir-lab-logo.png" alt="iCIR Lab" width="570" height="283">
             </a>
-            <nav class="section-nav" aria-label="Page sections" lang="en">
+            <button class="menu-toggle" id="section-menu-toggle" type="button" hidden
+                    aria-controls="section-navigation" aria-expanded="false" aria-label="Open section menu">
+                <svg class="menu-open-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+                <svg class="menu-close-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18"/></svg>
+            </button>
+            <nav class="section-nav" id="section-navigation" aria-label="Page sections" lang="en">
                 <ul>
                     <li><a href="#publication-title" data-label-en="Top" data-label-ko="맨 위">Top</a></li>
                     <li><a href="#demo-title" data-label-en="Demo Video" data-label-ko="데모 영상">Demo Video</a></li>
@@ -1107,7 +1177,6 @@
                 </ul>
             </nav>
             <div class="top-nav-controls">
-                <span class="content-language-label" aria-hidden="true">Content language · 본문 언어</span>
                 <button class="language-switch" id="language-toggle" type="button" data-language="en"
                         aria-label="Current content language: English. Switch to Korean."
                         title="한국어로 전환" aria-controls="content-en content-ko">
@@ -1546,18 +1615,85 @@
         const siteHeader = document.querySelector('.site-header');
         const topNav = document.querySelector('.top-nav');
         const headerSides = [document.querySelector('.lab-brand'), document.querySelector('.top-nav-controls')];
+        const menuToggle = document.getElementById('section-menu-toggle');
+        const menuMeasure = sectionNav.cloneNode(true);
+        menuMeasure.removeAttribute('id');
+        menuMeasure.removeAttribute('aria-label');
+        menuMeasure.classList.add('section-nav-measure');
+        menuMeasure.setAttribute('aria-hidden', 'true');
+        menuMeasure.inert = true;
+        siteHeader.append(menuMeasure);
+        const measuredLinks = [...menuMeasure.querySelectorAll('a')];
+        const measuredList = menuMeasure.querySelector('ul');
+        let compactMenu = false;
+        let menuOpen = false;
         let currentLanguage = 'en';
+
+        function setMenuOpen(open, restoreFocus = false) {
+            menuOpen = compactMenu && open;
+            menuToggle.setAttribute('aria-expanded', String(menuOpen));
+            menuToggle.setAttribute('aria-label', currentLanguage === 'ko'
+                ? (menuOpen ? '섹션 메뉴 닫기' : '섹션 메뉴 열기')
+                : (menuOpen ? 'Close section menu' : 'Open section menu'));
+            sectionNav.hidden = compactMenu && !menuOpen;
+            if (restoreFocus && compactMenu) menuToggle.focus();
+        }
 
         function updateHeaderOffset() {
             // Equal side columns keep the menu centered on the full viewport.
             const sideWidth = Math.ceil(Math.max(...headerSides.map(element => element.getBoundingClientRect().width)));
             topNav.style.setProperty('--header-side-width', `${sideWidth}px`);
+            const layout = getComputedStyle(topNav);
+            const availableWidth = topNav.clientWidth - parseFloat(layout.paddingLeft)
+                - parseFloat(layout.paddingRight) - 2 * sideWidth - 2 * parseFloat(layout.columnGap);
+            const nextCompact = measuredList.getBoundingClientRect().width > availableWidth;
+            if (nextCompact !== compactMenu) {
+                const menuHadFocus = sectionNav.contains(document.activeElement);
+                const toggleHadFocus = document.activeElement === menuToggle;
+                compactMenu = nextCompact;
+                siteHeader.dataset.menuCompact = String(compactMenu);
+                menuToggle.hidden = !compactMenu;
+                setMenuOpen(false);
+                if (compactMenu && menuHadFocus) menuToggle.focus();
+                if (!compactMenu && toggleHadFocus) sectionLinks[0].focus();
+            }
+            siteHeader.dataset.menuReady = 'true';
             document.documentElement.style.setProperty('--header-offset', `${siteHeader.getBoundingClientRect().height + 20}px`);
         }
         const headerObserver = new ResizeObserver(updateHeaderOffset);
         headerObserver.observe(siteHeader);
         headerSides.forEach(element => headerObserver.observe(element));
+        headerObserver.observe(measuredList);
+        window.addEventListener('resize', updateHeaderOffset);
+        document.fonts?.ready.then(updateHeaderOffset);
         updateHeaderOffset();
+
+        menuToggle.addEventListener('click', () => setMenuOpen(!menuOpen));
+        sectionLinks.forEach(link => link.addEventListener('click', event => {
+            if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+            if (compactMenu) {
+                setMenuOpen(false);
+                const target = document.getElementById(link.hash.slice(1));
+                if (target) {
+                    target.tabIndex = -1;
+                    target.focus({ preventScroll: true });
+                }
+            }
+        }));
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && menuOpen) {
+                event.preventDefault();
+                setMenuOpen(false, true);
+            }
+        });
+        document.addEventListener('click', event => {
+            if (menuOpen && !siteHeader.contains(event.target)) setMenuOpen(false);
+        });
+        siteHeader.addEventListener('focusout', () => {
+            requestAnimationFrame(() => {
+                if (menuOpen && !siteHeader.contains(document.activeElement)) setMenuOpen(false);
+            });
+        });
 
         function setContentLanguage(language, announce = false) {
             if (language !== 'en' && language !== 'ko') return;
@@ -1573,6 +1709,7 @@
                 if (panel.hidden) panel.querySelectorAll('video').forEach(video => video.pause());
             });
             sectionNav.lang = language;
+            menuToggle.lang = language;
             sectionNav.setAttribute('aria-label', language === 'ko' ? '페이지 목차' : 'Page sections');
             sectionLinks.forEach(link => {
                 if (link.dataset.section) {
@@ -1583,6 +1720,10 @@
                     link.textContent = link.getAttribute(`data-label-${language}`);
                 }
             });
+            measuredLinks.forEach((link, index) => { link.textContent = sectionLinks[index].textContent; });
+            menuMeasure.lang = language;
+            updateHeaderOffset();
+            setMenuOpen(menuOpen);
             // Keep an anchored section visible when switching its language.
             const anchoredLink = sectionLinks.find(link => link.dataset.section &&
                 ['en', 'ko'].some(lang => location.hash === `#${link.dataset.section}-${lang}`));
