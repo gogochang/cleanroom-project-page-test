@@ -1022,6 +1022,7 @@
         .case-meta { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; color: var(--color-accent); font-size: 12px; font-weight: 600; letter-spacing: .04em; }
         .case-copy h3 { margin: 0 0 8px; color: var(--color-heading); font-size: 19px; line-height: 1.4; }
         .case-copy p { margin: 0; color: var(--color-muted); font-size: 14px; line-height: 1.7; }
+        .video-method-note { margin: 12px 0 0; color: var(--color-muted); font-size: 12px; text-align: center; }
         .layout-note { margin: 16px 0 0; font-size: 13px; color: var(--color-muted); }
         .evaluation-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
         .metric-panel { min-width: 0; margin: 0; padding: 24px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-background); }
@@ -1161,14 +1162,15 @@
         <section class="demo" aria-labelledby="demo-title">
             <h2 class="section-title" id="demo-title" data-localized-copy data-label-en="Demo Video" data-label-ko="데모 영상">Demo Video</h2>
             <p class="overview-intro" data-localized-copy
-               data-label-en="Planned M6 demonstration: a complete trial in an open area of the cleanroom with moderate source strength and spread, from LRS patrol through HRS exploration to the final source-position decision."
-               data-label-ko="M6 대표 시연 예정: 클린룸 내 개방된 구역에 보통 세기와 분포 폭의 가스원을 두고, LRS 순찰부터 HRS 탐색과 최종 가스원 위치 결정까지 전체 흐름을 보여줍니다.">Planned M6 demonstration: a complete trial in an open area of the cleanroom with moderate source strength and spread, from LRS patrol through HRS exploration to the final source-position decision.</p>
+               data-label-en="A complete trial in an open area of the cleanroom with moderate source strength and spread, from LRS patrol through HRS exploration to the final source-position decision."
+               data-label-ko="클린룸 내 개방된 구역에 보통 세기와 분포 폭의 가스원을 두고, LRS 순찰부터 HRS 탐색과 최종 가스원 위치 결정까지 전체 흐름을 보여줍니다.">A complete trial in an open area of the cleanroom with moderate source strength and spread, from LRS patrol through HRS exploration to the final source-position decision.</p>
             <video class="demo-video" controls autoplay loop muted playsinline preload="metadata"
                    aria-label="Cleanroom Gas Source Localization Demo">
                 <source src="media/demo-compressed.mp4" type="video/mp4">
                 이 브라우저는 동영상 재생을 지원하지 않습니다.
                 <a href="media/demo-compressed.mp4">MP4 영상 다운로드</a>
             </video>
+            <p class="video-method-note" data-localized-copy data-label-en="Demonstration method: M6" data-label-ko="시연 방법: M6">Demonstration method: M6</p>
         </section>
         <hr class="section-divider">
         <div id="project-content">
@@ -1178,7 +1180,7 @@
                 <section class="case-showcase section-band" aria-labelledby="cases-title-en">
         <p class="section-kicker">SAME ENVIRONMENT · DIFFERENT CASES</p>
         <h2 class="section-title" id="cases-title-en">Special-case videos</h2>
-        <p class="overview-intro">Six planned M6 demonstrations in the cleanroom, covering obstacles, initial LRS signal strength, and source distance at the HRS transition. Each clip follows exploration through the final source-position decision.</p>
+        <p class="overview-intro">Six search conditions in the cleanroom: obstacles, initial LRS signal strength, and source distance at the HRS transition. Each clip follows exploration through the final source-position decision.</p>
         <p class="case-count">6 cases · up to 1 min each</p>
         <div class="case-grid" id="cases-grid-en">
             <article class="case-card">
@@ -1206,7 +1208,7 @@
                 <div class="case-copy"><div class="case-meta"><span>CASE 06</span><span>00:20</span></div><h3>Search for a distant source</h3><p>With moderate LRS readings, HRS begins a long path distance from the source and continues to the final position decision.</p></div>
             </article>
         </div>
-        <p class="layout-note">Layout preview: all four 20-second clips are excerpts from the main demo. Case titles describe planned videos, not the content of these sample clips.</p>
+        <p class="video-method-note">Demonstration method: M6 · All six cases</p>
     </section>
                 <section class="abstract" aria-labelledby="abstract-title-en">
                     <h2 class="section-title" id="abstract-title-en">Abstract</h2>
@@ -1365,7 +1367,7 @@
                 <section class="case-showcase section-band" aria-labelledby="cases-title-ko">
         <p class="section-kicker">SAME ENVIRONMENT · DIFFERENT CASES</p>
         <h2 class="section-title" id="cases-title-ko">특수 케이스별 영상</h2>
-        <p class="overview-intro">클린룸에서 M6로 시연할 여섯 가지 탐색 조건입니다. 장애물, LRS 초기 신호, HRS 시작 위치와 가스원 사이의 거리에 따라 탐색부터 최종 위치 결정까지 보여줄 예정입니다.</p>
+        <p class="overview-intro">클린룸의 여섯 가지 탐색 조건을 살펴봅니다. 장애물, LRS 초기 신호, HRS 시작 위치와 가스원 사이의 거리에 따라 탐색부터 최종 위치 결정까지 보여줍니다.</p>
         <p class="case-count">6개 케이스 · 각 최대 1분</p>
         <div class="case-grid" id="cases-grid-ko">
             <article class="case-card">
@@ -1393,6 +1395,7 @@
                 <div class="case-copy"><div class="case-meta"><span>CASE 06</span><span>00:20</span></div><h3>먼 가스원 탐색</h3><p>LRS에서 보통 수준의 농도를 측정하고, HRS 시작 위치에서 가스원까지의 이동 경로가 긴 상황의 탐색과 최종 위치 결정을 보여줍니다.</p></div>
             </article>
         </div>
+        <p class="video-method-note">시연 방법: M6 · 6개 케이스 공통</p>
     </section>
                 <section class="abstract" aria-labelledby="abstract-title-ko">
                     <h2 class="section-title" id="abstract-title-ko">초록</h2>
