@@ -1016,8 +1016,6 @@
         .case-card:last-child:nth-child(odd) { grid-column: 2 / span 2; }
         .case-media { position: relative; background: var(--color-surface); }
         .case-media video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: contain; }
-        .case-media-placeholder { display: grid; place-items: center; aspect-ratio: 16 / 9; color: var(--color-muted); font-size: 14px; }
-        .sample-badge { position: absolute; top: 10px; left: 10px; padding: 3px 9px; border-radius: 5px; background: rgb(255 255 255 / 94%); color: var(--color-muted); font-size: 11px; font-weight: 600; pointer-events: none; }
         .case-copy { padding: 20px; }
         .case-meta { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 8px; color: var(--color-accent); font-size: 12px; font-weight: 600; letter-spacing: .04em; }
         .case-copy h3 { margin: 0 0 8px; color: var(--color-heading); font-size: 19px; line-height: 1.4; }
@@ -1166,11 +1164,11 @@
                data-label-ko="클린룸 내 개방된 구역에 보통 세기와 분포 폭의 가스원을 두고, LRS 순찰부터 HRS 탐색과 최종 가스원 위치 결정까지 전체 흐름을 보여줍니다.">A complete trial in an open area of the cleanroom with moderate source strength and spread, from LRS patrol through HRS exploration to the final source-position decision.</p>
             <video class="demo-video" controls autoplay loop muted playsinline preload="metadata"
                    aria-label="Cleanroom Gas Source Localization Demo">
-                <source src="media/demo-compressed.mp4" type="video/mp4">
+                <source src="media/demo_cleanroom.mp4" type="video/mp4">
                 이 브라우저는 동영상 재생을 지원하지 않습니다.
-                <a href="media/demo-compressed.mp4">MP4 영상 다운로드</a>
+                <a href="media/demo_cleanroom.mp4">MP4 영상 다운로드</a>
             </video>
-            <p class="video-method-note" data-localized-copy data-label-en="Demonstration method: M6" data-label-ko="시연 방법: M6">Demonstration method: M6</p>
+            <p class="video-method-note" data-localized-copy data-label-en="Demonstration method: M6 · 4.5× speed" data-label-ko="시연 방법: M6 · 4.5배속">Demonstration method: M6 · 4.5× speed</p>
         </section>
         <hr class="section-divider">
         <div id="project-content">
@@ -1180,35 +1178,43 @@
                 <section class="case-showcase section-band" aria-labelledby="cases-title-en">
         <p class="section-kicker">SAME ENVIRONMENT · DIFFERENT CASES</p>
         <h2 class="section-title" id="cases-title-en">Special-case videos</h2>
-        <p class="overview-intro">Six search conditions in the cleanroom: obstacles, initial LRS signal strength, and source distance at the HRS transition. Each clip follows exploration through the final source-position decision.</p>
-        <p class="case-count">6 cases · up to 1 min each</p>
+        <p class="overview-intro">Eight search conditions in the cleanroom: obstacles, initial LRS signal strength, source distance at the HRS transition, and sources inside inaccessible equipment or beyond a wall. Each clip follows exploration through the final source-position decision.</p>
+        <p class="case-count">8 cases · 4.5× speed · Looping playback</p>
         <div class="case-grid" id="cases-grid-en">
             <article class="case-card">
-                <div class="case-media case-media-placeholder"><span>Video coming soon</span></div>
-                <div class="case-copy"><div class="case-meta"><span>CASE 01</span><span>Video coming soon</span></div><h3>Open-area search</h3><p>HRS exploration in an open part of the cleanroom, from the first target to the final source-position decision.</p></div>
+                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" aria-label="CASE 01: Open-area search"><source src="media/cases/case1.mp4" type="video/mp4"><a href="media/cases/case1.mp4">MP4</a></video></div>
+                <div class="case-copy"><div class="case-meta"><span>CASE 01</span><span>4.5× speed</span></div><h3>Open-area search</h3><p>HRS exploration in an open part of the cleanroom, from the first target to the final source-position decision.</p></div>
             </article>
             <article class="case-card">
-                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" poster="media/cases/sample-01.jpg" aria-label="SAMPLE CLIP 01"><source src="media/cases/sample-01.mp4" type="video/mp4"><a href="media/cases/sample-01.mp4">MP4</a></video><span class="sample-badge">SAMPLE CLIP</span></div>
-                <div class="case-copy"><div class="case-meta"><span>CASE 02</span><span>00:20</span></div><h3>Search near an obstacle</h3><p>HRS exploration around equipment that restricts access, showing detours and the final source-position decision.</p></div>
+                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" aria-label="CASE 02: Search near an obstacle"><source src="media/cases/case2.mp4" type="video/mp4"><a href="media/cases/case2.mp4">MP4</a></video></div>
+                <div class="case-copy"><div class="case-meta"><span>CASE 02</span><span>4.5× speed</span></div><h3>Search near an obstacle</h3><p>HRS exploration around equipment that restricts access, showing detours and the final source-position decision.</p></div>
             </article>
             <article class="case-card">
-                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" poster="media/cases/sample-02.jpg" aria-label="SAMPLE CLIP 02"><source src="media/cases/sample-02.mp4" type="video/mp4"><a href="media/cases/sample-02.mp4">MP4</a></video><span class="sample-badge">SAMPLE CLIP</span></div>
-                <div class="case-copy"><div class="case-meta"><span>CASE 03</span><span>00:20</span></div><h3>Search after a weak LRS signal</h3><p>Low but detectable LRS concentration readings lead into HRS exploration and the final source-position decision.</p></div>
+                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" aria-label="CASE 03: Search after a weak LRS signal"><source src="media/cases/case3.mp4" type="video/mp4"><a href="media/cases/case3.mp4">MP4</a></video></div>
+                <div class="case-copy"><div class="case-meta"><span>CASE 03</span><span>4.5× speed</span></div><h3>Search after a weak LRS signal</h3><p>Low but detectable LRS concentration readings lead into HRS exploration and the final source-position decision.</p></div>
             </article>
             <article class="case-card">
-                <div class="case-media case-media-placeholder"><span>Video coming soon</span></div>
-                <div class="case-copy"><div class="case-meta"><span>CASE 04</span><span>Video coming soon</span></div><h3>Search after a strong LRS signal</h3><p>High LRS concentration readings lead into HRS exploration and the final source-position decision.</p></div>
+                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" aria-label="CASE 04: Search after a strong LRS signal"><source src="media/cases/case4.mp4" type="video/mp4"><a href="media/cases/case4.mp4">MP4</a></video></div>
+                <div class="case-copy"><div class="case-meta"><span>CASE 04</span><span>4.5× speed</span></div><h3>Search after a strong LRS signal</h3><p>High LRS concentration readings lead into HRS exploration and the final source-position decision.</p></div>
             </article>
             <article class="case-card">
-                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" poster="media/cases/sample-03.jpg" aria-label="SAMPLE CLIP 03"><source src="media/cases/sample-03.mp4" type="video/mp4"><a href="media/cases/sample-03.mp4">MP4</a></video><span class="sample-badge">SAMPLE CLIP</span></div>
-                <div class="case-copy"><div class="case-meta"><span>CASE 05</span><span>00:20</span></div><h3>Search for a nearby source</h3><p>With moderate LRS readings, HRS begins a short path distance from the source and continues to the final position decision.</p></div>
+                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" aria-label="CASE 05: Search for a nearby source"><source src="media/cases/case5.mp4" type="video/mp4"><a href="media/cases/case5.mp4">MP4</a></video></div>
+                <div class="case-copy"><div class="case-meta"><span>CASE 05</span><span>4.5× speed</span></div><h3>Search for a nearby source</h3><p>With moderate LRS readings, HRS begins a short path distance from the source and continues to the final position decision.</p></div>
             </article>
             <article class="case-card">
-                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" poster="media/cases/sample-04.jpg" aria-label="SAMPLE CLIP 04"><source src="media/cases/sample-04.mp4" type="video/mp4"><a href="media/cases/sample-04.mp4">MP4</a></video><span class="sample-badge">SAMPLE CLIP</span></div>
-                <div class="case-copy"><div class="case-meta"><span>CASE 06</span><span>00:20</span></div><h3>Search for a distant source</h3><p>With moderate LRS readings, HRS begins a long path distance from the source and continues to the final position decision.</p></div>
+                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" aria-label="CASE 06: Search for a distant source"><source src="media/cases/case6.mp4" type="video/mp4"><a href="media/cases/case6.mp4">MP4</a></video></div>
+                <div class="case-copy"><div class="case-meta"><span>CASE 06</span><span>4.5× speed</span></div><h3>Search for a distant source</h3><p>With moderate LRS readings, HRS begins a long path distance from the source and continues to the final position decision.</p></div>
+            </article>
+            <article class="case-card">
+                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" aria-label="CASE 07: Source inside inaccessible equipment"><source src="media/cases/case7.mp4" type="video/mp4"><a href="media/cases/case7.mp4">MP4</a></video></div>
+                <div class="case-copy"><div class="case-meta"><span>CASE 07</span><span>4.5× speed</span></div><h3>Source inside inaccessible equipment</h3><p>The gas source is inside equipment that the robot cannot enter. The clip shows the search under this access constraint.</p></div>
+            </article>
+            <article class="case-card">
+                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" aria-label="CASE 08: Source beyond a wall"><source src="media/cases/case8.mp4" type="video/mp4"><a href="media/cases/case8.mp4">MP4</a></video></div>
+                <div class="case-copy"><div class="case-meta"><span>CASE 08</span><span>4.5× speed</span></div><h3>Source beyond a wall</h3><p>The gas source is on the other side of a wall. The clip shows exploration with the wall separating the robot from the source.</p></div>
             </article>
         </div>
-        <p class="video-method-note">Demonstration method: M6 · All six cases</p>
+        <p class="video-method-note">Demonstration method: M6 · All eight cases</p>
     </section>
                 <section class="abstract" aria-labelledby="abstract-title-en">
                     <h2 class="section-title" id="abstract-title-en">Abstract</h2>
@@ -1367,35 +1373,43 @@
                 <section class="case-showcase section-band" aria-labelledby="cases-title-ko">
         <p class="section-kicker">SAME ENVIRONMENT · DIFFERENT CASES</p>
         <h2 class="section-title" id="cases-title-ko">특수 케이스별 영상</h2>
-        <p class="overview-intro">클린룸의 여섯 가지 탐색 조건을 살펴봅니다. 장애물, LRS 초기 신호, HRS 시작 위치와 가스원 사이의 거리에 따라 탐색부터 최종 위치 결정까지 보여줍니다.</p>
-        <p class="case-count">6개 케이스 · 각 최대 1분</p>
+        <p class="overview-intro">클린룸의 여덟 가지 탐색 조건을 살펴봅니다. 장애물, LRS 초기 신호, HRS 시작 위치와 가스원 사이의 거리, 접근 불가능한 설비 내부와 벽 너머의 가스원 등 다양한 조건에서 탐색 과정을 보여줍니다.</p>
+        <p class="case-count">8개 케이스 · 4.5배속 · 자동 반복 재생</p>
         <div class="case-grid" id="cases-grid-ko">
             <article class="case-card">
-                <div class="case-media case-media-placeholder"><span>영상 준비 중</span></div>
-                <div class="case-copy"><div class="case-meta"><span>CASE 01</span><span>영상 준비 중</span></div><h3>개방된 구역에서 탐색</h3><p>장애물 영향이 적은 클린룸 구역에서 HRS의 첫 목표 선택부터 최종 가스원 위치 결정까지 보여줍니다.</p></div>
+                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" aria-label="CASE 01: 개방된 구역에서 탐색"><source src="media/cases/case1.mp4" type="video/mp4"><a href="media/cases/case1.mp4">MP4</a></video></div>
+                <div class="case-copy"><div class="case-meta"><span>CASE 01</span><span>4.5배속</span></div><h3>개방된 구역에서 탐색</h3><p>장애물 영향이 적은 클린룸 구역에서 HRS의 첫 목표 선택부터 최종 가스원 위치 결정까지 보여줍니다.</p></div>
             </article>
             <article class="case-card">
-                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" poster="media/cases/sample-01.jpg" aria-label="샘플 영상 01"><source src="media/cases/sample-01.mp4" type="video/mp4"><a href="media/cases/sample-01.mp4">MP4</a></video><span class="sample-badge">샘플 영상</span></div>
-                <div class="case-copy"><div class="case-meta"><span>CASE 02</span><span>00:20</span></div><h3>장애물 근처에서 탐색</h3><p>설비로 접근 방향이 제한되는 상황에서 HRS의 우회 경로와 최종 가스원 위치 결정 과정을 보여줍니다.</p></div>
+                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" aria-label="CASE 02: 장애물 근처에서 탐색"><source src="media/cases/case2.mp4" type="video/mp4"><a href="media/cases/case2.mp4">MP4</a></video></div>
+                <div class="case-copy"><div class="case-meta"><span>CASE 02</span><span>4.5배속</span></div><h3>장애물 근처에서 탐색</h3><p>설비로 접근 방향이 제한되는 상황에서 HRS의 우회 경로와 최종 가스원 위치 결정 과정을 보여줍니다.</p></div>
             </article>
             <article class="case-card">
-                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" poster="media/cases/sample-02.jpg" aria-label="샘플 영상 02"><source src="media/cases/sample-02.mp4" type="video/mp4"><a href="media/cases/sample-02.mp4">MP4</a></video><span class="sample-badge">샘플 영상</span></div>
-                <div class="case-copy"><div class="case-meta"><span>CASE 03</span><span>00:20</span></div><h3>약한 LRS 신호에서 탐색</h3><p>LRS에서 낮지만 검출 가능한 농도를 측정한 뒤, HRS로 전환해 최종 가스원 위치를 결정하는 과정을 보여줍니다.</p></div>
+                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" aria-label="CASE 03: 약한 LRS 신호에서 탐색"><source src="media/cases/case3.mp4" type="video/mp4"><a href="media/cases/case3.mp4">MP4</a></video></div>
+                <div class="case-copy"><div class="case-meta"><span>CASE 03</span><span>4.5배속</span></div><h3>약한 LRS 신호에서 탐색</h3><p>LRS에서 낮지만 검출 가능한 농도를 측정한 뒤, HRS로 전환해 최종 가스원 위치를 결정하는 과정을 보여줍니다.</p></div>
             </article>
             <article class="case-card">
-                <div class="case-media case-media-placeholder"><span>영상 준비 중</span></div>
-                <div class="case-copy"><div class="case-meta"><span>CASE 04</span><span>영상 준비 중</span></div><h3>강한 LRS 신호에서 탐색</h3><p>LRS에서 높은 농도를 측정한 뒤, HRS로 전환해 최종 가스원 위치를 결정하는 과정을 보여줍니다.</p></div>
+                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" aria-label="CASE 04: 강한 LRS 신호에서 탐색"><source src="media/cases/case4.mp4" type="video/mp4"><a href="media/cases/case4.mp4">MP4</a></video></div>
+                <div class="case-copy"><div class="case-meta"><span>CASE 04</span><span>4.5배속</span></div><h3>강한 LRS 신호에서 탐색</h3><p>LRS에서 높은 농도를 측정한 뒤, HRS로 전환해 최종 가스원 위치를 결정하는 과정을 보여줍니다.</p></div>
             </article>
             <article class="case-card">
-                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" poster="media/cases/sample-03.jpg" aria-label="샘플 영상 03"><source src="media/cases/sample-03.mp4" type="video/mp4"><a href="media/cases/sample-03.mp4">MP4</a></video><span class="sample-badge">샘플 영상</span></div>
-                <div class="case-copy"><div class="case-meta"><span>CASE 05</span><span>00:20</span></div><h3>가까운 가스원 탐색</h3><p>LRS에서 보통 수준의 농도를 측정하고, HRS 시작 위치에서 가스원까지의 이동 경로가 짧은 상황의 탐색과 최종 위치 결정을 보여줍니다.</p></div>
+                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" aria-label="CASE 05: 가까운 가스원 탐색"><source src="media/cases/case5.mp4" type="video/mp4"><a href="media/cases/case5.mp4">MP4</a></video></div>
+                <div class="case-copy"><div class="case-meta"><span>CASE 05</span><span>4.5배속</span></div><h3>가까운 가스원 탐색</h3><p>LRS에서 보통 수준의 농도를 측정하고, HRS 시작 위치에서 가스원까지의 이동 경로가 짧은 상황의 탐색과 최종 위치 결정을 보여줍니다.</p></div>
             </article>
             <article class="case-card">
-                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" poster="media/cases/sample-04.jpg" aria-label="샘플 영상 04"><source src="media/cases/sample-04.mp4" type="video/mp4"><a href="media/cases/sample-04.mp4">MP4</a></video><span class="sample-badge">샘플 영상</span></div>
-                <div class="case-copy"><div class="case-meta"><span>CASE 06</span><span>00:20</span></div><h3>먼 가스원 탐색</h3><p>LRS에서 보통 수준의 농도를 측정하고, HRS 시작 위치에서 가스원까지의 이동 경로가 긴 상황의 탐색과 최종 위치 결정을 보여줍니다.</p></div>
+                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" aria-label="CASE 06: 먼 가스원 탐색"><source src="media/cases/case6.mp4" type="video/mp4"><a href="media/cases/case6.mp4">MP4</a></video></div>
+                <div class="case-copy"><div class="case-meta"><span>CASE 06</span><span>4.5배속</span></div><h3>먼 가스원 탐색</h3><p>LRS에서 보통 수준의 농도를 측정하고, HRS 시작 위치에서 가스원까지의 이동 경로가 긴 상황의 탐색과 최종 위치 결정을 보여줍니다.</p></div>
+            </article>
+            <article class="case-card">
+                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" aria-label="CASE 07: 접근 불가능한 설비 내부의 가스원"><source src="media/cases/case7.mp4" type="video/mp4"><a href="media/cases/case7.mp4">MP4</a></video></div>
+                <div class="case-copy"><div class="case-meta"><span>CASE 07</span><span>4.5배속</span></div><h3>접근 불가능한 설비 내부의 가스원</h3><p>로봇이 진입할 수 없는 설비 내부에 가스원이 있는 상황에서의 탐색 과정을 보여줍니다.</p></div>
+            </article>
+            <article class="case-card">
+                <div class="case-media"><video controls autoplay loop muted playsinline preload="metadata" aria-label="CASE 08: 벽 너머의 가스원"><source src="media/cases/case8.mp4" type="video/mp4"><a href="media/cases/case8.mp4">MP4</a></video></div>
+                <div class="case-copy"><div class="case-meta"><span>CASE 08</span><span>4.5배속</span></div><h3>벽 너머의 가스원</h3><p>로봇과 가스원 사이에 벽이 있는 상황에서의 탐색 과정을 보여줍니다.</p></div>
             </article>
         </div>
-        <p class="video-method-note">시연 방법: M6 · 6개 케이스 공통</p>
+        <p class="video-method-note">시연 방법: M6 · 8개 케이스 공통</p>
     </section>
                 <section class="abstract" aria-labelledby="abstract-title-ko">
                     <h2 class="section-title" id="abstract-title-ko">초록</h2>
@@ -1537,6 +1551,16 @@
         </div>
     </main>
     <script>
+
+        document.querySelectorAll('video').forEach(video => {
+            const setPlaybackSpeed = () => {
+                video.defaultPlaybackRate = 4.5;
+                video.playbackRate = 4.5;
+            };
+            setPlaybackSpeed();
+            video.addEventListener('loadedmetadata', setPlaybackSpeed);
+            video.addEventListener('play', setPlaybackSpeed);
+        });
 
         // Autoplay muted clips only while visible; hidden translations stay paused.
         const visibleVideos = new Set();
