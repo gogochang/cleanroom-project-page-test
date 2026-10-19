@@ -1041,25 +1041,47 @@
 
         .abstract + .content-section { border-top: 0; }
         .system-overview-figure { margin: 28px 0 0; }
-        .system-diagram-placeholder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            aspect-ratio: 16 / 7;
-            min-height: 200px;
-            padding: 24px;
-            border: 1px dashed #c4d3ea;
-            border-radius: 12px;
-            background: #f8faff;
-            color: var(--color-muted);
-            text-align: center;
+        .system-flow { max-width: 960px; margin: 0 auto; }
+        .system-stage { display: flex; align-items: center; gap: 18px; padding: 24px 28px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-background); }
+        .system-stage h3, .system-search h3 { margin: 0; color: var(--color-heading); font-size: 19px; font-weight: 600; line-height: 1.4; }
+        .system-stage p, .system-loop p { margin: 6px 0 0; color: var(--color-muted); font-size: 14px; line-height: 1.6; }
+        .system-stage-number { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 38px; height: 38px; border: 1px solid var(--color-border); border-radius: 50%; color: var(--color-accent); background: var(--color-background); font-size: 13px; font-weight: 600; }
+        .system-stage-tag { color: var(--color-accent); font-size: 11px; font-weight: 600; letter-spacing: .08em; }
+        .system-patrol > .system-stage-tag, .system-search-heading > .system-stage-tag { margin-left: auto; }
+        .system-connector { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 64px; padding: 12px; color: var(--color-muted); font-size: 12px; }
+        .system-connector svg, .system-outcome-arrow svg { display: block; flex-shrink: 0; width: 24px; height: 24px; fill: none; stroke: var(--color-accent); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+        .system-search { padding: 24px 28px 18px; border: 1px solid var(--color-border); border-radius: 16px; background: var(--color-surface); }
+        .system-search-heading { display: flex; align-items: center; gap: 18px; margin-bottom: 24px; }
+        .system-search-intro { margin: -12px 0 22px; color: var(--color-muted); font-size: 14px; line-height: 1.6; }
+        .system-loop { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px; margin: 0; padding: 0; list-style: none; }
+        .system-loop-step { position: relative; display: flex; flex-direction: column; justify-content: center; min-width: 0; min-height: 104px; padding: 18px 12px; border: 1px solid var(--color-border); border-radius: 10px; background: var(--color-background); text-align: center; }
+        .system-loop-step h4 { margin: 0; color: var(--color-heading); font-size: 16px; font-weight: 600; line-height: 1.4; }
+        .system-loop-step + .system-loop-step::before { content: ""; position: absolute; left: -30px; top: 50%; width: 28px; border-top: 1px solid var(--color-accent); }
+        .system-loop-step + .system-loop-step::after { content: ""; position: absolute; left: -8px; top: calc(50% - 3px); width: 6px; height: 6px; border-top: 1px solid var(--color-accent); border-right: 1px solid var(--color-accent); transform: rotate(45deg); }
+        .system-feedback svg { display: block; width: 100%; height: 42px; fill: none; stroke: var(--color-accent); stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+        .system-feedback p { margin: -4px 0 0; color: var(--color-accent); text-align: center; font-size: 12px; }
+        .system-feedback p span { margin-right: 5px; }
+        .system-outcome { display: grid; grid-template-columns: minmax(0, 1.35fr) 48px minmax(0, 1fr); align-items: stretch; }
+        .system-outcome-arrow { display: flex; align-items: center; justify-content: center; }
+        .system-evaluation { background: #f8faff; }
+        .system-evaluation .system-stage-tag { display: block; margin-bottom: 6px; }
+        @media (max-width: 700px) {
+            .system-stage { gap: 12px; padding: 20px; }
+            .system-stage h3, .system-search h3 { font-size: 17px; }
+            .system-patrol > .system-stage-tag { display: none; }
+            .system-search { padding: 20px; }
+            .system-search-heading { gap: 12px; }
+            .system-loop { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+            .system-loop-step { min-height: 88px; }
+            .system-loop-step + .system-loop-step::before { left: 50%; top: -26px; width: 0; height: 24px; border-top: 0; border-left: 1px solid var(--color-accent); }
+            .system-loop-step + .system-loop-step::after { left: calc(50% - 3px); top: -8px; transform: rotate(135deg); }
+            .system-feedback svg { display: none; }
+            .system-feedback p { margin: 16px 0 0; }
+            .system-outcome { grid-template-columns: minmax(0, 1fr); }
+            .system-outcome-arrow { height: 40px; }
+            .system-outcome-arrow svg { transform: rotate(90deg); }
+            .system-evaluation { justify-content: center; text-align: center; }
         }
-        .system-diagram-placeholder strong { color: var(--color-accent); font-size: 17px; font-weight: 600; }
-        .system-diagram-placeholder span { font-size: 13px; }
-        .system-diagram-image { display: block; width: 100%; height: auto; border-radius: 12px; }
         .system-overview-figure figcaption { margin-top: 14px; color: var(--color-muted); font-size: 14px; text-align: center; }
     </style>
 </head>
@@ -1226,13 +1248,41 @@
                 </section>
                 <section class="content-section system-overview" aria-labelledby="system-overview-title-en">
                     <h2 class="section-title" id="system-overview-title-en">System overview</h2>
-                    <figure class="system-overview-figure">
-                        <!-- Replace this placeholder with an img using class="system-diagram-image" when the diagram is ready. -->
-                        <div class="system-diagram-placeholder">
-                            <strong>Overall system diagram</strong>
-                            <span>Coming soon</span>
+                    <p class="overview-intro">One benchmark trial: from a patrol pass to a final source-position decision.</p>
+                    <figure class="system-overview-figure" aria-describedby="system-flow-caption-en">
+                        <div class="system-flow">
+                            <div class="system-stage system-patrol">
+                                <span class="system-stage-number" aria-hidden="true">01</span>
+                                <div><h3>LRS · One patrol pass</h3><p>Measure concentration and update GMRF at each patrol stop</p></div>
+                                <span class="system-stage-tag">PATROL</span>
+                            </div>
+                            <div class="system-connector"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v17m-5-5 5 5 5-5"/></svg><span>Anomaly detected · complete the patrol</span></div>
+                            <div class="system-search" role="group" aria-labelledby="system-hrs-en">
+                                <div class="system-search-heading"><span class="system-stage-number" aria-hidden="true">02</span><h3 id="system-hrs-en">HRS · Focused search</h3><span class="system-stage-tag">ITERATE</span></div>
+                                <p class="system-search-intro">Continue updating the GMRF built during LRS.</p>
+                                <ol class="system-loop">                            <li class="system-loop-step">
+                                <h4>GMRF</h4><p>Update the concentration estimate</p>
+                            </li>
+                            <li class="system-loop-step">
+                                <h4>Select next position</h4><p>Apply the search strategy</p>
+                            </li>
+                            <li class="system-loop-step">
+                                <h4>Move & measure</h4><p>Navigate, dwell and sample</p>
+                            </li>
+                                </ol>
+                                <div class="system-feedback">
+                                    <svg viewBox="0 0 900 42" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M750 1v25H150V1m-5 6 5-6 5 6"/></svg>
+                                    <p><span aria-hidden="true">↺</span> Feed new observations back into GMRF</p>
+                                </div>
+                            </div>
+                            <div class="system-connector"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v17m-5-5 5 5 5-5"/></svg><span>Search termination condition met</span></div>
+                            <div class="system-outcome">
+                                <div class="system-stage system-decision"><span class="system-stage-number" aria-hidden="true">03</span><div><h3>Decide source position</h3><p>Record the estimate and decision time</p></div></div>
+                                <div class="system-outcome-arrow"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h17m-5-5 5 5-5 5"/></svg></div>
+                                <div class="system-stage system-evaluation"><div><span class="system-stage-tag">TRIAL COMPLETE</span><h3>Evaluate</h3><p>Time · Error · Score</p></div></div>
+                            </div>
                         </div>
-                        <figcaption>Routine patrol → Anomaly detection → High-resolution search (HRS) → Gas source localization</figcaption>
+                        <figcaption id="system-flow-caption-en">The operational system patrols continuously. This benchmark evaluates one trial at a time; the loop shown here is the repeated measurement and estimation within HRS.</figcaption>
                     </figure>
                 </section>
                 <section class="content-section measurement" aria-labelledby="measurement-title-en">
@@ -1364,13 +1414,41 @@
                 </section>
                 <section class="content-section system-overview" aria-labelledby="system-overview-title-ko">
                     <h2 class="section-title" id="system-overview-title-ko">전체 시스템 구성</h2>
-                    <figure class="system-overview-figure">
-                        <!-- Replace this placeholder with an img using class="system-diagram-image" when the diagram is ready. -->
-                        <div class="system-diagram-placeholder">
-                            <strong>전체 시스템 도표</strong>
-                            <span>추가 예정</span>
+                    <p class="overview-intro">한 번의 평가 시행: 순찰부터 최종 가스원 위치 결정까지.</p>
+                    <figure class="system-overview-figure" aria-describedby="system-flow-caption-ko">
+                        <div class="system-flow">
+                            <div class="system-stage system-patrol">
+                                <span class="system-stage-number" aria-hidden="true">01</span>
+                                <div><h3>LRS · 순찰 1회</h3><p>각 순찰 지점에서 농도 측정·GMRF 갱신</p></div>
+                                <span class="system-stage-tag">순찰</span>
+                            </div>
+                            <div class="system-connector"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v17m-5-5 5 5 5-5"/></svg><span>이상 농도 감지 · 현재 순찰 완료</span></div>
+                            <div class="system-search" role="group" aria-labelledby="system-hrs-ko">
+                                <div class="system-search-heading"><span class="system-stage-number" aria-hidden="true">02</span><h3 id="system-hrs-ko">HRS · 집중 탐색</h3><span class="system-stage-tag">반복</span></div>
+                                <p class="system-search-intro">LRS에서 구축한 GMRF를 이어서 갱신합니다.</p>
+                                <ol class="system-loop">                            <li class="system-loop-step">
+                                <h4>GMRF</h4><p>농도 분포 추정·갱신</p>
+                            </li>
+                            <li class="system-loop-step">
+                                <h4>다음 측정 위치 선택</h4><p>방법별 탐색 전략 적용</p>
+                            </li>
+                            <li class="system-loop-step">
+                                <h4>이동·농도 측정</h4><p>목표 도착 후 정지 측정</p>
+                            </li>
+                                </ol>
+                                <div class="system-feedback">
+                                    <svg viewBox="0 0 900 42" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M750 1v25H150V1m-5 6 5-6 5 6"/></svg>
+                                    <p><span aria-hidden="true">↺</span> 새 측정값으로 GMRF 갱신</p>
+                                </div>
+                            </div>
+                            <div class="system-connector"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3v17m-5-5 5 5 5-5"/></svg><span>탐색 종료 조건 충족</span></div>
+                            <div class="system-outcome">
+                                <div class="system-stage system-decision"><span class="system-stage-number" aria-hidden="true">03</span><div><h3>최종 가스원 위치 결정</h3><p>추정 좌표·결정 시각 기록</p></div></div>
+                                <div class="system-outcome-arrow"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 12h17m-5-5 5 5-5 5"/></svg></div>
+                                <div class="system-stage system-evaluation"><div><span class="system-stage-tag">시행 종료</span><h3>평가</h3><p>시간 · 오차 · Score</p></div></div>
+                            </div>
                         </div>
-                        <figcaption>평시 순찰 → 이상 감지 → 고해상도 탐색(HRS) → 가스 소스 위치 추정</figcaption>
+                        <figcaption id="system-flow-caption-ko">원래 시스템은 평상시 순찰을 반복합니다. 이 벤치마크에서는 단일 시행을 평가하며, 그림의 반복은 HRS 내부의 측정·추정 반복을 의미합니다.</figcaption>
                     </figure>
                 </section>
                 <section class="content-section measurement" aria-labelledby="measurement-title-ko">
